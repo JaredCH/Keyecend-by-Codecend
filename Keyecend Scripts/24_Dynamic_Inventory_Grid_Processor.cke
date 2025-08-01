@@ -1,0 +1,46 @@
+# SCRIPT: Dynamic Inventory Grid Processor
+# PURPOSE: Scans a grid-based UI and performs an action on a specific item.
+
+# --- CONFIGURATION (EDIT THESE VALUES) ---
+# Set the starting X,Y coordinates for the center of the first slot.
+# MOVEMOUSE 255 310
+
+# Set the number of columns (slots per row) and rows in your grid.
+# LOOP 8 # Columns
+# LOOP 5 # Rows
+
+# Set the pixel distance between the center of each slot.
+# MOVEMOUSE +82 0 # Move to next column
+# MOVEMOUSE -656 +82 # Move to start of next row (8 slots * 82px wide = 656)
+# ----------------------------------------------
+
+
+# --- SCRIPT START ---
+# Move to the starting position of the first slot in the grid.
+MOVEMOUSE 255 310
+SLEEP 500
+
+# Outer loop for rows
+LOOP 5
+    # Inner loop for columns
+    LOOP 8
+        # Check for the target item in the current slot.
+        # Wait only 100ms. If not found, skip forward 2 lines.
+        WAITFORIMAGEFILE target_item.jpg,100,2,0
+        
+        # If the item was found, perform an action (e.g., right-click to use it).
+        CLICKRIGHT
+        SLEEP 500 # Wait a moment after the action
+        
+        # Move to the next slot in the row (to the right).
+        MOVEMOUSE +82 0
+        SLEEP 200
+    ENDLOOP
+    
+    # After a row is finished, move to the start of the next row.
+    # Move all the way back to the first column (-656px) and down one row (+82px).
+    MOVEMOUSE -656 +82
+    SLEEP 500
+ENDLOOP
+
+# --- SCRIPT END ---
