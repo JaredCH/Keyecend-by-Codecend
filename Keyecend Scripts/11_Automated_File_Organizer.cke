@@ -1,0 +1,44 @@
+# SCRIPT: Automated File Organizer
+# PURPOSE: Moves all images from a Downloads folder to a Pictures folder.
+# NOTE: This uses standard Windows shortcuts. Your folder paths may vary.
+
+# --- Step 1: Open the Source Folder (Downloads) ---
+# Use RUN to open explorer directly to the Downloads folder
+RUN "explorer.exe C:\Users\YourUser\Downloads"
+SLEEP 1500
+
+# --- Step 2: Isolate and Select the Image Files ---
+# Focus the main file list pane (usually a TAB works)
+SEND {TAB}
+SLEEP 500
+
+# Use the search bar (Ctrl+F) to find all PNG files
+SEND ^f
+SLEEP 500
+SEND *.png
+SEND {ENTER}
+SLEEP 2000 # Wait for search to complete
+
+# Select all the found files (Ctrl+A)
+SEND ^a
+SLEEP 500
+
+# Cut the files (Ctrl+X)
+SEND ^x
+SLEEP 500
+
+# --- Step 3: Open the Destination and Paste ---
+# Use RUN again for the destination folder (Pictures)
+RUN "explorer.exe C:\Users\YourUser\Pictures"
+SLEEP 1500
+
+# Paste the files (Ctrl+V)
+SEND ^v
+SLEEP 3000 # Give time for files to move
+
+# --- Step 4: Close the Explorer Windows ---
+# Use Alt+F4 to close the active window (Pictures)
+SEND %{F4}
+SLEEP 500
+# And again for the other window (Downloads)
+SEND %{F4}

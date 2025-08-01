@@ -1,0 +1,23 @@
+# SCRIPT: Gaming Health Bar Monitor
+# PURPOSE: Watches a health bar and presses a 'heal' key if health is low.
+# INSTRUCTIONS: Use the 'Measure' tool in Keyecend to find the X,Y coordinate
+# of a pixel on your game's health bar that is RED when health is low.
+# Replace the coordinates and color below. Press 'End' to stop.
+
+# Loop forever to constantly monitor the health bar
+LOOP unlimited
+    
+    # Wait until the pixel at 250, 980 becomes red (#FF0000).
+    # The timeout is only 50ms, so it checks very quickly without pausing.
+    # If the color doesn't match, it just continues the loop instantly.
+    WAITFORCOLOR 250 980 #FF0000 50
+
+    # If the color WAS found, the script continues here.
+    # If not, it skips this command and loops again.
+    # Press the 'H' key to simulate using a healing potion.
+    SEND h
+
+    # Wait 1 second before checking again to avoid spamming the key.
+    SLEEP 1000
+
+ENDLOOP

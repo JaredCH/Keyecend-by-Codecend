@@ -1,0 +1,26 @@
+# SCRIPT: HTML Boilerplate Generator
+# PURPOSE: Creates and saves a new index.html file with a basic structure.
+
+RUN "notepad.exe"
+SLEEP 1000
+
+# Type out the HTML boilerplate structure
+# Using {TAB} helps with indentation
+SEND <!DOCTYPE html>{ENTER}
+SEND <html>{ENTER}
+SEND {TAB}<head>{ENTER}
+SEND {TAB}{TAB}<meta charset="UTF-8">{ENTER}
+SEND {TAB}{TAB}<title>My New Website</title>{ENTER}
+SEND {TAB}</head>{ENTER}
+SEND {TAB}<body>{ENTER}{ENTER}
+SEND {TAB}{TAB}<h1>Welcome!</h1>{ENTER}{ENTER}
+SEND {TAB}</body>{ENTER}
+SEND </html>
+
+# Now, save the file
+SLEEP 500
+SEND ^s # Ctrl+S to open save dialog
+SLEEP 1000
+SEND index.html # Type the file name
+SLEEP 500
+SEND {ENTER} # Press Enter to save

@@ -1,0 +1,15 @@
+# SCRIPT: Automated Google Search
+# PURPOSE: Opens a browser, navigates to Google, and performs a search.
+
+# Open Google in the default browser
+RUN "https://www.google.com"
+
+# Wait for the page to load. 3 seconds should be enough.
+SLEEP 3000
+
+# Type the search query. The search bar is usually focused by default.
+# If not, you may need a CLICK command here first.
+SEND Keyecend Automation Tool
+
+# Press Enter to submit the search
+SEND {ENTER}

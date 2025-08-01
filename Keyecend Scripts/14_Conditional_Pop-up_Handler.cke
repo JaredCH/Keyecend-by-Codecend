@@ -1,0 +1,18 @@
+# SCRIPT: Conditional Pop-up Handler
+# PURPOSE: Checks for a "Success" or "Error" pop-up and handles each differently.
+
+# --- Check 1: Look for the "Success" image ---
+# If found, the script continues to the CLICKLEFT command.
+# If NOT found after 1 second, it will jump forward 2 lines to the next check.
+WAITFORIMAGEFILE success_popup.jpg,1000,2,0
+    CLICKLEFT foundimage.center # This is the "IF" block
+    SLEEP 5 # This ends the script by jumping past the error check
+
+# --- Check 2: Look for the "Error" image ---
+# This part of the script only runs if the success_popup was not found.
+# If the error image is found, it clicks it.
+# If not found, it jumps 2 lines, ending the script.
+WAITFORIMAGEFILE error_popup.jpg,1000,2,0
+    CLICKLEFT foundimage.center # This is the "ELSE IF" block
+
+# The script ends here.
