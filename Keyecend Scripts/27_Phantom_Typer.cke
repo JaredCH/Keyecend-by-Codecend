@@ -1,0 +1,17 @@
+# PRANK SCRIPT - HARMLESS FUN
+# This script will occasionally type a funny message into the active window.
+# Press the 'End' key at any time to stop the script.
+
+LOOP unlimited
+    # Wait for a random time between 1 and 3 minutes.
+    SLEEPRANDOM 60000 180000
+
+    SEND Are we having fun yet?
+    SLEEP 5000 # Pause after typing
+
+    SLEEPRANDOM 60000 180000
+    SEND I know what you typed last summer...
+
+    SLEEPRANDOM 60000 180000
+    SEND Just checking in. Carry on.
+ENDLOOP

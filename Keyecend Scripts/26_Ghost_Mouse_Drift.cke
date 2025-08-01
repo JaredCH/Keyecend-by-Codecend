@@ -1,0 +1,18 @@
+# PRANK SCRIPT - HARMLESS FUN
+# This script makes the mouse cursor slowly drift to a corner at random intervals.
+# Press the 'End' key at any time to stop the script.
+
+LOOP unlimited
+    # Wait for a random time between 45 and 90 seconds to be subtle.
+    SLEEPRANDOM 45000 90000
+
+    # Slowly and smoothly move the mouse to the top-left corner over 3 seconds.
+    MOVEMOUSEHUMAN 0 0 3000
+
+    # Wait for another long random interval.
+    SLEEPRANDOM 45000 90000
+
+    # Slowly drift to the bottom-right corner.
+    # NOTE: Use your screen resolution's coordinates for better results (e.g., 1920 1080).
+    MOVEMOUSEHUMAN 1920 1080 3000
+ENDLOOP

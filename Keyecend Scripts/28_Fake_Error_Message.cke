@@ -1,0 +1,15 @@
+# PRANK SCRIPT - HARMLESS FUN
+# This script opens Notepad and types a funny, fake error message.
+
+# Give the "victim" a moment of peace before the prank.
+SLEEP 10000
+
+RUN "notepad.exe"
+SLEEP 500
+
+SEND Windows Task Host - Critical Stop Error{ENTER}
+SEND ----------------------------------------------------{ENTER}{ENTER}
+SEND An unexpected error has occurred.{ENTER}{ENTER}
+SEND ERROR CODE: 0xDEADBEEF - TOO_MUCH_PROCRASTINATION{ENTER}{ENTER}
+SEND REASON: Coffee level has fallen below critical threshold.{ENTER}{ENTER}
+SEND Please tell your computer a joke to continue.
