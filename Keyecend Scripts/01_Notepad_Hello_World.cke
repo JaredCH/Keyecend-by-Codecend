@@ -1,0 +1,14 @@
+# SCRIPT: Notepad Hello World
+# PURPOSE: A simple "hello world" to demonstrate basic commands.
+# It opens Notepad, waits for it to appear, and types a message.
+
+# Run the Notepad application
+RUN "notepad.exe"
+
+# Give the program a moment to open before proceeding
+SLEEP 1000
+
+# Type the welcome message into the active window (Notepad)
+# {ENTER} simulates pressing the Enter key
+SEND Hello from Keyecend!{ENTER}
+SEND This is your first automated script.

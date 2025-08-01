@@ -1,0 +1,23 @@
+# SCRIPT: Create Daily Log File
+# PURPOSE: A mini-workflow to create a new text file with a template.
+
+# Open Notepad
+RUN "notepad.exe"
+SLEEP 1000
+
+# Type a template header. Use placeholders for the date.
+SEND Daily Log for 2025-08-01{ENTER}{ENTER}
+SEND Notes:{ENTER}
+SEND - 
+
+# Use keyboard shortcuts to open the "Save As" dialog
+# ^s is Ctrl+S
+SEND ^s
+SLEEP 1000
+
+# Type the desired filename
+# Note: You can't get the actual current date yet, so this is a static name.
+SEND MyLogFile_2025_08_01.txt
+
+# Press enter to confirm the save
+SEND {ENTER}

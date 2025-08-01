@@ -1,0 +1,20 @@
+# SCRIPT: Auto-Clicker "Next" Button
+# PURPOSE: Repeatedly clicks a "Next" or "Continue" button until it disappears.
+# SETUP: 1. Take a screenshot of the button you want to click.
+#        2. Save it as "next_button.jpg" in the ScriptImages folder.
+
+# This will loop until the image is NOT found.
+# If "next_button.jpg" is found, it will execute the next two lines.
+# If it's not found, it will skip forward 3 lines (actionOffset = 3),
+# effectively jumping past the loop and ending the script.
+WAITFORIMAGEFILE next_button.jpg,2000,3,0
+
+# Click the center of the button we just found
+CLICKLEFT foundimage.center
+
+# Wait a moment before looping back
+SLEEP 500
+
+# Jump back 4 lines to the WAITFORIMAGEFILE command to check again
+# This creates the loop.
+SLEEP -4

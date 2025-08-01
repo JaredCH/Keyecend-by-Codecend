@@ -1,0 +1,12 @@
+# SCRIPT: Dynamic Offset Click
+# PURPOSE: Demonstrates clicking relative to a found image,
+#          which is more reliable than using fixed coordinates.
+# SETUP: 1. Screenshot a user profile icon and save it as "profile_icon.jpg".
+
+# Find the profile icon on screen
+WAITFORIMAGEFILE profile_icon.jpg,0,-1,0
+
+# Now, instead of clicking the icon itself, click 50 pixels to the RIGHT
+# of its center. This might be where a "Settings" or "Edit" button is.
+# This works even if the profile icon appears somewhere else on the screen!
+CLICKLEFT foundimage.offsetx 50

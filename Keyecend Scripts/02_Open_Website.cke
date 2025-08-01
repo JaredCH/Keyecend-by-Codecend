@@ -1,0 +1,6 @@
+# SCRIPT: Open Website
+# PURPOSE: Opens the default web browser and navigates to a specific URL.
+
+# The RUN command can also be used to open URLs
+# Windows will automatically use the default browser
+RUN "https://www.codecend.com"

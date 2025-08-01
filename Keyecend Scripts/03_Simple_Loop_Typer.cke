@@ -1,0 +1,19 @@
+# SCRIPT: Simple Loop Typer
+# PURPOSE: Demonstrates the LOOP and ENDLOOP commands.
+# INSTRUCTIONS: Open a text editor (like Notepad) and place your cursor
+# where you want the text to appear, then run this script.
+
+# Wait for 3 seconds to give you time to switch to your text editor
+SLEEP 3000
+
+# Start a loop that will repeat 5 times
+LOOP 5
+    # These commands inside the loop will be repeated
+    SEND This is loop iteration number...
+    SLEEP 500
+    SEND {ENTER}
+    SLEEP 500
+# Mark the end of the loop block
+ENDLOOP
+
+SEND All done!

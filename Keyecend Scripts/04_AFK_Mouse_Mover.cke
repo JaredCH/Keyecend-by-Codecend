@@ -1,0 +1,20 @@
+# SCRIPT: AFK Mouse Mover
+# PURPOSE: Prevents the computer from going idle by moving the mouse
+#          with human-like motion at random intervals.
+#          Press the 'End' key to stop the script.
+
+# Use an unlimited loop to run forever until stopped manually
+LOOP unlimited
+    # Move the mouse smoothly to a random X (100-800) and Y (100-600) coordinate
+    # The final number (e.g., 2000) is the duration in ms, making it smooth
+    MOVEMOUSEHUMAN 450 350 2000
+    
+    # Wait for a random duration between 5 and 10 seconds
+    SLEEPRANDOM 5000 10000
+
+    # Move to another random location
+    MOVEMOUSEHUMAN 700 500 1500
+
+    # Wait again
+    SLEEPRANDOM 5000 10000
+ENDLOOP

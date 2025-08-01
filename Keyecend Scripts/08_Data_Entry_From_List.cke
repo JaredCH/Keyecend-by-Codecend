@@ -1,0 +1,18 @@
+# SCRIPT: Data Entry From List
+# PURPOSE: Shows how to use LOOPLIST with a user-provided list.
+# INSTRUCTIONS: When you run this script, a window will pop up asking
+# for a list of items. Paste a list (e.g., names, one per line)
+# into the box and click OK. The script will then type each item.
+
+# Start a loop that will run for every item in the list the user provides.
+# 'LIVELIST' is a special keyword for this.
+LOOPLIST LIVELIST
+    # Type the current item from the list
+    SENDLISTITER LIVELIST
+    
+    # Simulate pressing Tab to move to the next field
+    SEND {TAB}
+
+    # Wait half a second before processing the next item
+    SLEEP 500
+ENDLOOP

@@ -1,0 +1,7 @@
+# SCRIPT: Find and Click Color
+# PURPOSE: Demonstrates finding a color anywhere on screen and clicking it.
+# This is useful for clicking standard web links or UI elements.
+
+# Find the first pixel on screen that matches this common hyperlink blue color
+# and perform a Left click on it.
+FINDCOLORCLICK #0000FF Left

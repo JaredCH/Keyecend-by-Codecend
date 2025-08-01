@@ -1,0 +1,14 @@
+# SCRIPT: Wait For and Click Icon
+# PURPOSE: Demonstrates finding an image on screen and clicking it.
+# SETUP: 1. Take a screenshot of your Recycle Bin icon.
+#        2. Save it as "recycle_bin.jpg" in the ScriptImages folder.
+
+# This command will loop forever (-1) until it finds the image.
+# The 0 timeout means it will never stop based on time.
+WAITFORIMAGEFILE recycle_bin.jpg,0,-1,0
+
+# Once the image is found, the script continues here.
+# Double click the center of the image we just found.
+CLICKLEFT foundimage.center
+SLEEP 100
+CLICKLEFT foundimage.center
