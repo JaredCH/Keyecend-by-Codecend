@@ -24,7 +24,7 @@
     <img src="https://img.shields.io/github/v/release/JaredCH/Keyecend-by-Codecend?style=for-the-badge&color=5d69bf" alt="Latest Release">
   </a>
   <a href="https://github.com/JaredCH/Keyecend-by-Codecend/releases">
-    <img src="https://img.shields.io/github/downloads/JaredCH/Keyecend-by-Codecend/total?style=for-the-badge&color=brightgreen" alt="Total Downloads">
+    <img src="https://img.shields.io/github/downloads/JaredCH/Keyecend-by-Codecend/total?style=for-the-badge&color=28a745&logo=download" alt="Total Downloads">
   </a>
   <a href="https://github.com/JaredCH/Keyecend-by-Codecend/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/JaredCH/Keyecend-by-Codecend?style=for-the-badge&color=41b883" alt="License">
@@ -36,205 +36,299 @@
 
 ---
 
-### **Overview**
+## **Overview**
 
-Tired of repetitive, manual tasks? **Keyecend** is your solution. It's a sophisticated macro management tool that empowers you to orchestrate complex workflows, automate UI interactions, and integrate external scripts with a simple yet powerful scripting language.
+Transform repetitive tasks into automated workflows with **Keyecend**. This sophisticated macro management tool empowers you to orchestrate complex automation, handle UI interactions intelligently, and integrate external scripts—all through an intuitive scripting language.
 
-From simple key presses to intelligent, vision-based automation, Keyecend is the engine that drives your productivity. Whether you're a gamer, a data entry professional, or a developer, you can craft scripts to do the work for you.
-
----
-
-### ✨ **Core Features**
-
-Keyecend comes packed with features that give you complete control over your machine.
-
-* 👁️ **Vision-Based Automation:** Use `WAITFORIMAGEFILE` and `FINDCOLORCLICK` to create intelligent scripts that react to on-screen elements, not just fixed coordinates.
-* 🦾 **Human-Like Mouse Movement:** Go beyond robotic `MOVEMOUSE`. With `MOVEMOUSEHUMAN`, your automations become smoother, more natural, and less detectable.
-* ⌨️ **Advanced Keystroke Simulation:** The `SEND` command can type text, handle complex keyboard shortcuts (`^c`, `%{F4}`), and even use encrypted text for secure input of sensitive data.
-* 🔄 **Powerful Logic and Loops:** Easily repeat actions with `LOOP` or iterate through data with `LOOPLIST` and `SENDLISTITER`. All loops are terminated with `ENDLOOP`.
-* ⚙️ **External Script Execution:** Use the `RUN` command to launch `.exe` files, compiled AutoHotkey scripts, or any other program, making Keyecend your central automation hub.
-* 🔐 **Built-in Encryption:** Securely store and use sensitive text like passwords or API keys within your scripts with the dead-simple `ENCRYPT` command.
-* 🛠️ **Developer Utilities:** Tools like `MEASURE` and interactive overlays make script creation a breeze by giving you instant pixel distances and coordinates.
+From simple keystrokes to advanced vision-based automation, Keyecend adapts to your workflow. Perfect for gamers, data professionals, developers, and anyone who values their time.
 
 ---
 
-### 🚀 **Getting Started**
+## ✨ **Key Features**
 
-1. Go to the [**Releases Page**](https://github.com/JaredCH/Keyecend-by-Codecend/releases).
-2. Download the latest `Keyecend.exe` or installer for your operating system.
-3. Run the application and start scripting!
+### 🎯 **Smart Automation**
+- **Vision-Based Logic**: React to screen changes with `WAITFORIMAGEFILE` and `FINDCOLORCLICK`
+- **Human-Like Movement**: Natural mouse paths with `MOVEMOUSEHUMAN` using Bezier curves
+- **Dynamic Coordinates**: Script positions relative to found images, not fixed pixels
 
----
+### ⚡ **Powerful Scripting**
+- **Advanced Text Input**: Handle shortcuts, special keys, and encrypted passwords
+- **Flexible Loops**: Iterate with counts, lists, or unlimited cycles
+- **External Integration**: Launch programs and scripts seamlessly
 
-### ⌨️ **Global Hotkeys**
-
-While a script is running, you can control it globally from any application:
-* **`Pause / Break`**: Pauses a running script. Press it again to resume.
-* **`End`**: Immediately stops and terminates the current script.
-
----
-
-### 📚 **Scripting Reference**
-
-Master Keyecend with its straightforward scripting language. Here are the core commands:
-
-#### **Timing & Control Flow**
-* **`SLEEP [duration_ms]`**
-  * Pauses the script for a fixed duration in milliseconds.
-  * `SLEEP 1500`
-
-* **`SLEEPRANDOM [min_ms] [max_ms]`**
-  * Pauses for a random duration between the minimum and maximum values. Excellent for mimicking human behavior.
-  * `SLEEPRANDOM 800 1200`
-
-* **`LOOP [count|unlimited]`**
-  * Repeats a block of commands a specific number of times. Use `unlimited` for an infinite loop (can be stopped with the `End` key). The block must be closed with `ENDLOOP`.
-  * ```
-    LOOP 5
-        # ... your commands here ...
-    ENDLOOP
-    ```
-
-* **`ENDLOOP`**
-  * Marks the end of a `LOOP` or `LOOPLIST` block.
-  * `ENDLOOP`
-
-#### **Mouse & Keyboard**
-* **`MOVEMOUSE [X] [Y]`** or **`MOVEMOUSE [dynamic_coordinate]`**
-  * Instantly moves the cursor to the target coordinates. Also supports [Dynamic Coordinates](#dynamic-coordinates).
-  * `MOVEMOUSE 800 600`
-  * `MOVEMOUSE foundimage.center`
-
-* **`MOVEMOUSEHUMAN [X] [Y] [duration_ms]`**
-  * Smoothly moves the cursor to the target coordinates over a duration, using a Bezier curve to simulate human-like motion.
-  * `MOVEMOUSEHUMAN 800 600 50`
-
-* **`CLICKLEFT [X] [Y]`** / **`CLICKRIGHT [X] [Y]`**
-  * Performs a mouse click at the specified coordinates. Also supports [Dynamic Coordinates](#dynamic-coordinates).
-  * `CLICKLEFT 850 650`
-  * `CLICKRIGHT foundimage.offsetxy 10 5`
-
-* **`SEND [text]`**
-  * Types the provided text. This is a very powerful command with special syntax:
-  * **Special Keys:** Use curly braces `{}` for non-character keys.
-    * *Examples:* `{ENTER}`, `{TAB}`, `{F5}`, `{BACKSPACE}`, `{UP 2}` (presses UP key twice).
-  * **Modifier Keys:** Use `^` for Ctrl, `+` for Shift, and `%` for Alt.
-    * *Examples:* `^c` (Copy), `^v` (Paste), `%{F4}` (Alt+F4).
-  * **Encrypted Text:** Safely type sensitive data using the `Enc(...)` syntax.
-    * *Example:* `SEND Enc("U0Jbt...==")`
-  * **Plain Text:**
-    * `SEND Hello World!{ENTER}`
-
-#### **Vision & Color**
-* **`WAITFORIMAGEFILE [FileName],[timeout],[actionOffset],[maxAttempts]`**
-  * The most powerful conditional command. Waits for a captured image to appear on screen and then alters the script's execution flow.
-    * **`FileName`**: The image file (e.g., `button.jpg`) located in the `ScriptImages` folder.
-    * **`timeout`**: Time in milliseconds to wait for the image. Use `0` for an unlimited wait.
-    * **`actionOffset`**: What to do if the image is **not** found.
-      * `0`: Continue to the next line.
-      * `> 0`: Jump forward that many lines.
-      * `< 0`: Jump backward that many lines (creates a loop until the image is found).
-    * **`maxAttempts`**: (Optional) The maximum number of times to try the `actionOffset` loop. `0` means infinite retries.
-  * ```
-    # Loop until 'login_success.jpg' is found, then continue
-    WAITFORIMAGEFILE login_success.jpg,0,-1,0
-    ```
-
-* **`WAITFORCOLOR [X] [Y] [hex_color] [timeout_ms]`**
-  * Waits until a pixel at a *specific* X,Y location matches the target color (e.g., `#FF33AA`). Use `0` for an unlimited timeout.
-  * `WAITFORCOLOR 300 450 #FF33AA 10000`
-
-* **`FINDCOLORCLICK [hex_color] [click_type]`**
-  * Finds the *first pixel* of the target color anywhere on screen and performs an action.
-    * **`click_type`**: Can be `Left`, `Right`, or `None`.
-  * `FINDCOLORCLICK #1A2B3C Left`
-
-#### **Data & Lists**
-* **`LOOPLIST [ListName]`**
-  * Loops through a user-defined list. For each iteration, the internal iterator for that list advances. Use with `SENDLISTITER` or other commands inside the loop. Must be closed with `ENDLOOP`.
-  * ```
-    # This example types each line from a list you provide when the script runs.
-    LOOPLIST LIVELIST
-        SENDLISTITER LIVELIST
-        SEND {ENTER}
-        SLEEP 500
-    ENDLOOP
-    ```
-
-* **`SENDLISTITER [ListName]`**
-  * Types the *current* item from the specified list based on the loop's progress.
-  * `SENDLISTITER MyUserList`
-
-#### **System & Utilities**
-* **`RUN [program_path]`**
-  * Runs an external program or script. Use quotes for paths with spaces.
-  * `RUN "notepad.exe"`
-  * `RUN "C:\My Scripts\utility.exe"`
-
-* **`ENCRYPT [text]`**
-  * This is a UI-driven command. In the editor, highlight text, click the "Encrypt" button, and it will be replaced with `Enc("...")` for use with the `SEND` command.
-
-* **`MEASURE`**
-  * An interactive tool to measure distances. Click two points on the screen, and it will insert commented-out coordinates, distance, and delta values into your script for easy reference.
-  * ```
-    MEASURE
-    # Distance: 100 px
-    # First:    X:600, Y:400
-    # Second:   X:700, Y:400
-    # Delta:    X:100, Y:0
-    ```
-
-* **`# [comment]`**
-  * Lines starting with `#` are comments and will be ignored by the script runner.
-  * `# This is a comment`
+### 🔒 **Security & Reliability**
+- **Built-in Encryption**: Secure storage for sensitive data
+- **Global Hotkeys**: Pause/resume/stop scripts from anywhere
+- **Developer Tools**: Interactive measurement and coordinate helpers
 
 ---
 
-### **Dynamic Coordinates**
+## 🚀 **Quick Start**
 
-Instead of using fixed X,Y numbers, you can use coordinates relative to the last image found by `WAITFORIMAGEFILE`. This makes your scripts incredibly robust against changes in window position or resolution.
+1. **Download**: Get the latest version from [Releases](https://github.com/JaredCH/Keyecend-by-Codecend/releases)
+2. **Install**: Run `Keyecend.exe` or use the installer
+3. **Script**: Create your first automation script
+4. **Execute**: Run and control with global hotkeys
 
-* `foundimage.center`: The center of the found image.
-* `foundimage.topleft`: The top-left corner of the found image.
-* `foundimage.bottomright`: The bottom-right corner of the found image.
-* `foundimage.offsetx [pixels]`: The center of the image, offset horizontally.
-* `foundimage.offsety [pixels]`: The center of the image, offset vertically.
-* `foundimage.offsetxy [x_pixels] [y_pixels]`: The center, offset by both X and Y.
-
-**Example Usage:**
+### Your First Script
 ```
-# Wait for the "Username" field to appear on screen
+# Simple automation example
+SLEEP 1000
+SEND Hello, World!{ENTER}
+CLICKLEFT 500 300
+```
+
+---
+
+## ⌨️ **Global Controls**
+
+Control running scripts from any application:
+- **`Pause/Break`**: Pause/resume current script
+- **`End`**: Stop script immediately
+
+---
+
+## 📖 **Command Reference**
+
+<details>
+<summary><strong>⏱️ Timing & Flow Control</strong></summary>
+
+### `SLEEP [duration_ms]`
+Pause execution for specified milliseconds.
+```
+SLEEP 1500
+```
+
+### `SLEEPRANDOM [min_ms] [max_ms]`
+Random pause duration for human-like behavior.
+```
+SLEEPRANDOM 800 1200
+```
+
+### `LOOP [count|unlimited]` ... `ENDLOOP`
+Repeat command blocks.
+```
+LOOP 5
+    SEND Hello{ENTER}
+    SLEEP 500
+ENDLOOP
+```
+
+</details>
+
+<details>
+<summary><strong>🖱️ Mouse & Keyboard</strong></summary>
+
+### `MOVEMOUSE [X] [Y]` / `MOVEMOUSE [dynamic_coordinate]`
+Instant cursor positioning.
+```
+MOVEMOUSE 800 600
+MOVEMOUSE foundimage.center
+```
+
+### `MOVEMOUSEHUMAN [X] [Y] [duration_ms]`
+Smooth, natural cursor movement.
+```
+MOVEMOUSEHUMAN 800 600 500
+```
+
+### `CLICKLEFT [X] [Y]` / `CLICKRIGHT [X] [Y]`
+Mouse clicks with dynamic coordinate support.
+```
+CLICKLEFT 850 650
+CLICKRIGHT foundimage.offsetxy 10 5
+```
+
+### `SEND [text]`
+Advanced text input with special syntax:
+- **Special keys**: `{ENTER}`, `{TAB}`, `{F5}`, `{UP 2}`
+- **Modifiers**: `^c` (Ctrl+C), `+a` (Shift+A), `%{F4}` (Alt+F4)
+- **Encrypted text**: `SEND Enc("encrypted_string")`
+
+```
+SEND Hello World!{ENTER}
+SEND ^c
+SEND Enc("U0Jbt...==")
+```
+
+</details>
+
+<details>
+<summary><strong>👁️ Vision & Color Detection</strong></summary>
+
+### `WAITFORIMAGEFILE [file],[timeout],[actionOffset],[maxAttempts]`
+Wait for images and control script flow.
+- `file`: Image in `ScriptImages` folder
+- `timeout`: Wait time (0 = unlimited)
+- `actionOffset`: Lines to jump if not found (negative = loop back)
+- `maxAttempts`: Maximum retry attempts (0 = unlimited)
+
+```
+# Loop until login button appears
+WAITFORIMAGEFILE login_button.jpg,0,-1,0
+CLICKLEFT foundimage.center
+```
+
+### `WAITFORCOLOR [X] [Y] [hex_color] [timeout_ms]`
+Wait for specific pixel color.
+```
+WAITFORCOLOR 300 450 #FF33AA 10000
+```
+
+### `FINDCOLORCLICK [hex_color] [click_type]`
+Find and click first matching color pixel.
+```
+FINDCOLORCLICK #1A2B3C Left
+```
+
+</details>
+
+<details>
+<summary><strong>📋 Data & Lists</strong></summary>
+
+### `LOOPLIST [ListName]` ... `ENDLOOP`
+Iterate through user-defined lists.
+```
+LOOPLIST USERNAMES
+    SENDLISTITER USERNAMES
+    SEND {TAB}
+    SLEEP 500
+ENDLOOP
+```
+
+### `SENDLISTITER [ListName]`
+Type current list item.
+```
+SENDLISTITER MyList
+```
+
+</details>
+
+<details>
+<summary><strong>🛠️ System & Utilities</strong></summary>
+
+### `RUN [program_path]`
+Execute external programs.
+```
+RUN "notepad.exe"
+RUN "C:\Scripts\utility.exe"
+```
+
+### `ENCRYPT [text]`
+UI tool: Select text → Click "Encrypt" button.
+
+### `MEASURE`
+Interactive distance measurement tool.
+```
+MEASURE
+# Distance: 100 px
+# First:    X:600, Y:400
+# Second:   X:700, Y:400
+# Delta:    X:100, Y:0
+```
+
+### `# [comment]`
+Script comments (ignored during execution).
+```
+# This is a comment
+```
+
+</details>
+
+---
+
+## 🎯 **Dynamic Coordinates**
+
+Make scripts resolution-independent by using coordinates relative to found images:
+
+| Coordinate | Description |
+|------------|-------------|
+| `foundimage.center` | Center of found image |
+| `foundimage.topleft` | Top-left corner |
+| `foundimage.bottomright` | Bottom-right corner |
+| `foundimage.offsetx [pixels]` | Center + horizontal offset |
+| `foundimage.offsety [pixels]` | Center + vertical offset |
+| `foundimage.offsetxy [x] [y]` | Center + both offsets |
+
+### Example: Adaptive Login Script
+```
+# Wait for username field
 WAITFORIMAGEFILE username_field.jpg,0,-1,0
 
-# Click 200 pixels to the right of the center of that image to select the input box
+# Click in the field (200px right of image center)
 CLICKLEFT foundimage.offsetx 200
 
-# Send my username
-SEND MyUsername
+# Enter credentials
+SEND MyUsername{TAB}
+SEND MyPassword{ENTER}
 ```
 
 ---
 
-### 🤝 **Contributing**
+## 💡 **Use Cases**
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- **Gaming**: Automated resource gathering, repetitive actions
+- **Data Entry**: Form filling, batch processing
+- **Testing**: UI automation, regression testing  
+- **Productivity**: File organization, system maintenance
+- **Development**: Build automation, deployment scripts
 
 ---
 
-### 📜 **License**
+## 🤝 **Contributing**
 
-Distributed under the MIT License. See `LICENSE` for more information.
+We welcome contributions! Here's how to get involved:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### Development Setup
+- Windows 10+ required
+- .NET Framework 4.7.2+
+- Visual Studio 2019+ recommended
 
 ---
 
-### **Contact**
+## 📋 **System Requirements**
 
-JaredCH (Codecend) – [@JaredCH](https://github.com/JaredCH) – [www.codecend.com](https://www.codecend.com)
+- **OS**: Windows 10 or later
+- **RAM**: 256MB minimum
+- **Storage**: 50MB available space
+- **Permissions**: User-level access (Admin for system-wide automation)
 
-Project Link: [https://github.com/JaredCH/Keyecend-by-Codecend](https://github.com/JaredCH/Keyecend-by-Codecend)
+---
+
+## ❓ **FAQ**
+
+**Q: Is Keyecend safe to use?**  
+A: Yes! Keyecend is digitally signed and contains no malware. It only performs actions you explicitly script.
+
+**Q: Can I use Keyecend for gaming?**  
+A: While Keyecend can automate games, always check game terms of service regarding automation tools.
+
+**Q: Does it work with multiple monitors?**  
+A: Yes! Keyecend supports multi-monitor setups with full coordinate mapping.
+
+---
+
+## 📜 **License**
+
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for details.
+
+---
+
+## 📞 **Support & Contact**
+
+- **Developer**: JaredCH (Codecend)
+- **Website**: [codecend.com](https://www.codecend.com)
+- **Issues**: [GitHub Issues](https://github.com/JaredCH/Keyecend-by-Codecend/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/JaredCH/Keyecend-by-Codecend/discussions)
+
+---
+
+<div align="center">
+  <p><strong>⭐ Star this repo if Keyecend helps automate your workflow!</strong></p>
+</div>
