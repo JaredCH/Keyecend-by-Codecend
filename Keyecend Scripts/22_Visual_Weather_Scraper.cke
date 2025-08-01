@@ -1,0 +1,36 @@
+# SCRIPT: Visual Weather Scraper
+# PURPOSE: "Scrapes" the current temperature from a website and saves it to a text file.
+
+# --- Step 1: Open the Weather Website ---
+# We use San Marcos, TX as the location.
+RUN "https://www.weather.com/weather/today/l/San+Marcos+TX"
+SLEEP 4000 # Allow time for the page and temperature to load
+
+# --- Step 2: Find the Temperature and Copy It ---
+# Find the static weather icon (sun, clouds, etc.) next to the temperature.
+WAITFORIMAGEFILE weather_icon.jpg,5000,0,0
+
+# The temperature text is likely to the right of the icon.
+# Move the mouse to the icon's center, then offset it to where the text is.
+# You may need to adjust these offset values (e.g., 100 pixels right, 10 pixels up).
+MOVEMOUSEHUMAN foundimage.offsetxy 100 -10 500
+
+# Triple-click to select the entire temperature text block.
+CLICKLEFT
+CLICKLEFT
+CLICKLEFT
+SLEEP 200
+
+# Copy the selected text to the clipboard (Ctrl+C).
+SEND ^c
+SLEEP 200
+
+# --- Step 3: Paste the Data into Notepad ---
+RUN "notepad.exe"
+SLEEP 1000
+
+SEND The current temperature is: 
+SLEEP 200
+
+# Paste the copied temperature (Ctrl+V).
+SEND ^v

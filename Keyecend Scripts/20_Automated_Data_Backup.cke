@@ -1,0 +1,29 @@
+# SCRIPT: Automated Data Backup (Simple Zip)
+# PURPOSE: Right-clicks a folder and uses the context menu to create a zip file.
+# SETUP: Change the folder path and coordinates to match the folder you want to back up.
+
+# Open File Explorer to the location of the folder you want to zip
+RUN "explorer.exe C:\Users\YourUser\Documents"
+SLEEP 1500
+
+# --- Find and right-click the target folder ---
+# For this example, we use coordinates. A WAITFORIMAGEFILE would be more robust.
+CLICKRIGHT 350 400 # Right-click on the "Important_Project" folder
+
+SLEEP 1000 # Wait for the context menu to appear
+
+# --- Navigate the context menu with key presses ---
+# 'N' is often the hotkey for the "Send to" sub-menu.
+SEND n
+SLEEP 500
+
+# 'C' is often the hotkey for "Compressed (zipped) folder".
+SEND c
+SLEEP 500
+
+# Press Enter to confirm creation of the zip file
+SEND {ENTER}
+SLEEP 2000
+
+# Close the window
+SEND %{F4}

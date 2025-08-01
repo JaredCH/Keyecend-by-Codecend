@@ -1,0 +1,34 @@
+# SCRIPT: Gmail Unread Email Processor
+# PURPOSE: Finds and marks all unread emails from a specific sender as read.
+
+# --- Step 1: Open Gmail and Search ---
+RUN "https://mail.google.com/"
+SLEEP 5000 # Wait for Gmail to load
+
+# The search bar is usually active, but a click might be needed.
+# This search query finds all unread emails from "alerts@company.com".
+SEND from:alerts@company.com is:unread{ENTER}
+SLEEP 3000 # Wait for search results to load
+
+# --- Step 2: Loop Through and Process Unread Emails ---
+# This loop will continue as long as an unread email is found.
+LOOP unlimited
+    # Look for the unread indicator image. Wait up to 3s.
+    # If it's NOT found, it means we're done. Jump forward 3 lines to exit the loop.
+    WAITFORIMAGEFILE gmail_unread_indicator.jpg,3000,3,0
+
+    # If the image was found, click on its center to open the email.
+    CLICKLEFT foundimage.center
+    SLEEP 2000 # Wait for the email to open (and be marked as read)
+
+    # Go back to the inbox to find the next one.
+    # This might be a "back" button click or a keyboard shortcut depending on the web app.
+    # For Gmail, a common way is to press 'u' for "back to threadlist".
+    SEND u
+    SLEEP 2000
+
+    # The loop will now repeat, looking for the next unread email.
+ENDLOOP
+
+# --- Script End ---
+# This part is only reached when no more "gmail_unread_indicator.jpg" images are found.

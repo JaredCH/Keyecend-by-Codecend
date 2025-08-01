@@ -1,0 +1,18 @@
+# SCRIPT: Presentation Mode Launcher
+# PURPOSE: Opens all necessary applications and files for a presentation.
+# SETUP: Change the file path for the .pptx file to match your own.
+
+# Display a comment in the script editor for clarity
+# This line does nothing when the script is run.
+# --- LAUNCHING PRESENTATION ---
+
+# Step 1: Open the PowerPoint presentation
+RUN "C:\Users\YourUser\Documents\Presentations\Q3_Report.pptx"
+SLEEP 5000 # Give PowerPoint time to load fully
+
+# Step 2: Open the company's live dashboard in the default browser
+RUN "https://www.your-company-dashboard.com"
+SLEEP 3000
+
+# Step 3: Open a blank Notepad for taking live notes
+RUN "notepad.exe"

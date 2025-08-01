@@ -1,0 +1,36 @@
+# SCRIPT: Automated MS Paint Drawing
+# PURPOSE: Opens MS Paint and draws a simple shape to showcase mouse control.
+
+RUN "mspaint.exe"
+SLEEP 2000 # Wait for MS Paint to load
+
+# --- Draw the top side of a square (left to right) ---
+# We will place a "dot" every 10 pixels by moving and clicking.
+# This simulates a drag, as Keyecend does not have a "mouse down/up" command.
+MOVEMOUSE 200 200
+LOOP 20
+    CLICKLEFT # Click at the current position
+    MOVEMOUSE +10 0 # Special syntax to move relative to current position
+    SLEEP 20 # A small delay between each dot
+ENDLOOP
+
+# --- Draw the right side of a square (top to bottom) ---
+LOOP 20
+    CLICKLEFT
+    MOVEMOUSE 0 +10
+    SLEEP 20
+ENDLOOP
+
+# --- Draw the bottom side of a square (right to left) ---
+LOOP 20
+    CLICKLEFT
+    MOVEMOUSE -10 0
+    SLEEP 20
+ENDLOOP
+
+# --- Draw the left side of a square (bottom to top) ---
+LOOP 20
+    CLICKLEFT
+    MOVEMOUSE 0 -10
+    SLEEP 20
+ENDLOOP

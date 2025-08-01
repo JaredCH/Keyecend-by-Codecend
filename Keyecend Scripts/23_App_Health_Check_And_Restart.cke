@@ -1,0 +1,28 @@
+# SCRIPT: App Health Check and Restart
+# PURPOSE: Monitors an application and restarts it if it becomes unresponsive.
+# WARNING: This script can close applications. Configure it carefully.
+
+# --- Main Monitoring Loop ---
+LOOP unlimited
+    # Check for the "app_is_ok.jpg" image. Wait for up to 5 seconds.
+    # IF IT IS FOUND, we jump forward 5 lines, skipping the restart logic.
+    # IF IT IS NOT FOUND, the script continues to the next line.
+    WAITFORIMAGEFILE app_is_ok.jpg,5000,5,0
+
+    # --- Restart Logic (only runs if the image was NOT found) ---
+    # Attempt to close the unresponsive app gracefully using Alt+F4.
+    # You would first need to click on the app to focus it.
+    # CLICKLEFT 100 100 # Example: Click a known coordinate of the app window
+    SLEEP 200
+    SEND %{F4}
+    SLEEP 2000 # Wait for it to close
+
+    # Relaunch the application.
+    # Replace the path with the actual path to your application's .exe.
+    RUN "C:\Program Files\MyApp\Application.exe"
+    
+    # Wait a significant amount of time for the app to restart before looping.
+    SLEEP 30000
+
+    # The ENDLOOP will now cause the script to loop back and check again.
+ENDLOOP

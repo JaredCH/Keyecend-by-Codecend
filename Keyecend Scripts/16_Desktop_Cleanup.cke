@@ -1,0 +1,31 @@
+# SCRIPT: Desktop Cleanup
+# PURPOSE: Finds all shortcuts (.lnk files) on the desktop and moves them to the Recycle Bin.
+# WARNING: This script deletes files. Use with caution.
+
+# --- Step 1: Open the Desktop folder in File Explorer ---
+# 'shell:desktop' is a Windows command to go directly to the current user's desktop folder.
+RUN "explorer.exe shell:desktop"
+SLEEP 2000 # Wait for the window to open and be ready
+
+# --- Step 2: Search for and select all shortcut files ---
+# Use the search shortcut (Ctrl+F)
+SEND ^f
+SLEEP 500
+
+# Type the search query for all .lnk files. The asterisk * is a wildcard.
+SEND *.lnk
+SEND {ENTER}
+SLEEP 2500 # Wait for the search results to populate
+
+# Select all the files found (Ctrl+A)
+SEND ^a
+SLEEP 500
+
+# --- Step 3: Move the selected files to the Recycle Bin ---
+# Send the Delete key. This will move files to the Recycle Bin.
+# It may open a confirmation dialog, which this script does not handle.
+SEND {DELETE}
+SLEEP 1000
+
+# Close the Explorer window
+SEND %{F4}

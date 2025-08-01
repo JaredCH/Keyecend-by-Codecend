@@ -1,0 +1,32 @@
+# SCRIPT: Robust Web Login
+# PURPOSE: Enters credentials, clicks login, and checks for success or failure.
+# SETUP: You will need to capture your own images for this to work.
+
+# --- Step 1: Enter Credentials ---
+# These clicks would ideally find text fields, but for this example, we use coordinates.
+CLICKLEFT 650 300
+SEND my_username
+
+CLICKLEFT 650 380
+SEND Enc("U0Jbt...==") # Use encrypted text for your password
+
+# --- Step 2: Find and Click the Login Button ---
+WAITFORIMAGEFILE login_button.jpg,5000,2,0 # Wait up to 5s, else skip next line
+    CLICKLEFT foundimage.center
+
+# --- Step 3: Check for Success or Failure ---
+SLEEP 3000 # Wait for the next page to load
+
+# Check for a "Login Successful" image (e.g., part of a dashboard).
+# If not found after 5s, jump forward 2 lines to the error check.
+WAITFORIMAGEFILE dashboard.jpg,5000,2,0
+    # If we are here, it means login was successful. The script can end.
+    SLEEP 5 # Jump past the error handling to the end of the script
+
+# This code only runs if dashboard.jpg was NOT found.
+# Check for a "Login Error" message.
+WAITFORIMAGEFILE login_error.jpg,1000,0,0
+    # If the error message was found, we could add commands here,
+    # like sending an alert or trying again. For now, it just ends.
+
+# --- Script End ---
